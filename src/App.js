@@ -1,33 +1,6 @@
 import React, { useState } from 'react';
+import AddEnemyInput from './AddEnemyInput';
 import './App.css';
-
-// class App extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       enemies: ['cat', 'dog', 'baby'],
-//     };
-//   }
-//   removeEnemy = (enemyToRemove) => {
-//     this.setState({ enemies: this.state.enemies.filter(enemy => enemy !== enemyToRemove)});
-//   }
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           this is where the header was
-//         </header>
-//         <div className="enemies-list">
-//           {this.state.enemies.map(enemy => (
-//             <button onClick={() => this.removeEnemy(enemy)} key={enemy}>
-//               {enemy}
-//             </button>
-//           ))}
-//         </div>
-//       </div>
-//     );
-//   }
-// }
 
 function App() {
   const [enemies, setEnemies] = useState([
@@ -35,6 +8,12 @@ function App() {
     'dog',
     'baby'
   ]);
+
+  function addEnemy(enemyToBeAdded) {
+    setEnemies(
+      [...enemies, enemyToBeAdded]
+    );
+  }
 
   function removeEnemy(enemyToBeRemoved) {
     setEnemies(
@@ -47,6 +26,7 @@ function App() {
       <header className="App-header">
         this is where the header was
       </header>
+      <AddEnemyInput addEnemy={addEnemy}/>
       <div className="enemies-list">
         {enemies.map(enemy => (
           <button onClick={() => removeEnemy(enemy)} key={enemy}>
